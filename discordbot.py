@@ -1,4 +1,5 @@
 import discord
+import os
 from time import sleep
 from random import shuffle, choice, randint, sample
 from datetime import datetime
