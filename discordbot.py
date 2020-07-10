@@ -4,6 +4,8 @@ from time import sleep
 from random import shuffle, choice, randint, sample
 from datetime import datetime
 
+trans = str.maketrans({s:"" for s in " 　,./\\]:;@[\^-|~=)('&%$#\"!<>?_}*+`{"})
+
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 client = discord.Client()
@@ -155,7 +157,7 @@ async def on_message(message):
                     guild.me: discord.PermissionOverwrite(read_messages=True, send_messages=True),
                     member:discord.PermissionOverwrite(read_messages=True, send_messages=False)
             }
-            channel = await guild.create_text_channel(f"投票（{member.display_name}）", overwrites = overwrites)
+            channel = await guild.create_text_channel(f"投票（{member.display_name.lower().translate(trans)}）", overwrites = overwrites)
             await channel.send(f"あなたのお題は **{wolf_word if isWolf[i] else villager_word }** です。")
             vote_channels.append(channel)
                 
@@ -348,7 +350,7 @@ async def on_message(message):
                         await text_channel.send(f"{players[i].display_name} さんはウルフではありませんでした。\nウルフは **{players[W]}** さんでした。**ウルフの勝利です！**")
                         loseWolf = False
                 else:
-                    I = [max_members[i][0] for i,_voted2 in max_members]
+                    I = [max_members[i][0] for i,_voted2 in max_members2]
                     if any(map(lambda i: isWolf[i], I)):
                         await text_channel.send(f"同率1位の中にウルフである **{players[W].display_name}** さんが含まれています。よって**引き分け**です。")
                     else:                
@@ -400,19 +402,7 @@ async def on_message(message):
         await message.channel.send(str(randint(1,6)))
 	
     if command == "!test":
-        for root,dirs,files in os.walk(os.getcwd()):
-            for file in files:
-                path = os.path.join(root,file)
-                if "data" in path:
-                    print(path)
-        await message.channel.send(randint(1,6))
-        with open("/app/data/お題2.csv") as f:
-            await message.channel.send(str(randint(1,6)))
-            for line in f:
-                await message.channel.send(str(randint(1,6)))
-                await message.channel.send(line[:10])
-                break
-            await message.channel.send(str(randint(1,6)))
+        await message.channel.send(str(randint(1,6)))
 client.run(TOKEN)
         
     
