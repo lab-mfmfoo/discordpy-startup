@@ -26,7 +26,7 @@ async def on_message(message):
     guild = message.guild
     if command == "!setup":
         for channel in guild.text_channels:
-            if channel.name == "text_for_wordwolf":
+            if channel.name == NAME_TEXT:
                 break
         else:
             overwrites = {
@@ -37,7 +37,7 @@ async def on_message(message):
             await channel.send("ここはワードウルフで使用する専用テキストチャンネルです。")
         
         for channel in guild.voice_channels:
-            if channel.name == "voice_for_wordwolf":
+            if channel.name == NAME_VOICE:
                 break
         else:
             channel = await guild.create_voice_channel(NAME_VOICE, overwrites = overwrites)
