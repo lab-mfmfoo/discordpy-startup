@@ -400,7 +400,11 @@ async def on_message(message):
         await message.channel.send(str(randint(1,6)))
     
     if command == "!test":
-        await message.channel.send(os.listdir())
+        for root,dirs,files in os.walk(os.getcwd()):
+	        for file in files:
+		        path = os.path.join(root,file)
+	            print(path)
+        await message.channel.send(randint(1,6))
         with open("test/お題.csv") as f:
             await message.channel.send(str(randint(1,6)))
             for line in f:
