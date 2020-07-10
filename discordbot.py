@@ -117,7 +117,7 @@ async def on_message(message):
             return
         
         nVillager = len(players) - nWolf
-        if nVillager <= nWolf:
+        if nVillager < nWolf:
             await message.channel.send("**村人の人数 > ウルフの人数 となるように設定してください。**")
             return
 
