@@ -407,7 +407,7 @@ client.run(TOKEN)
 
 
 
-/*
+"""
 from discord.ext import commands
 import os
 import traceback
@@ -429,4 +429,4 @@ async def ping(ctx):
 
 
 bot.run(token)
-*/
+"""
