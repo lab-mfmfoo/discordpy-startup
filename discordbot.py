@@ -399,8 +399,12 @@ async def on_message(message):
     if command == "!dice":
         await message.channel.send(str(randint(1,6)))
     
-        
-        
+    if command == "!test":
+        with open("test/お題.csv") as f:
+            for line in f:
+                await message.channel.send(line[:10])
+                break
+                
 client.run(TOKEN)
         
     
