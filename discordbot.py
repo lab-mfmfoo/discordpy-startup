@@ -47,12 +47,12 @@ async def on_message(message):
         
         for channel in guild.text_channels:
             if channel.name == "text_for_wordwolf":
-                channel.delete()
+                await channel.delete()
                 break
             
         for channel in guild.voice_channels:
             if channel.name == "voice_for_wordwolf":
-                channel.delete()
+                await channel.delete()
                 break
             
         await message.channel.send("ティアダウンが完了しました。")
