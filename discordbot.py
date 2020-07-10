@@ -121,7 +121,7 @@ async def on_message(message):
             await message.channel.send("**村人の人数 > ウルフの人数 となるように設定してください。**")
             return
 
-        filename = r"D:\PythonScript\wordwolf\お題2.csv" if "-s" in params else r"D:\PythonScript\wordwolf\お題.csv"
+        filename = "/app/data/" + "お題2.csv" if "-s" in params else "お題.csv"
         
         
         with open(filename, "r", encoding="utf-8") as f:
