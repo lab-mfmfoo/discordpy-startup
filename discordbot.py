@@ -402,10 +402,12 @@ async def on_message(message):
     if command == "!test":
         await message.channel.send(str(randint(1,6)))
         with open("test/お題.csv") as f:
+            await message.channel.send(str(randint(1,6)))
             for line in f:
+                await message.channel.send(str(randint(1,6)))
                 await message.channel.send(line[:10])
                 break
-                
+            await message.channel.send(str(randint(1,6)))
 client.run(TOKEN)
         
     
