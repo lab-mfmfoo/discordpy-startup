@@ -403,7 +403,7 @@ async def on_message(message):
         for root,dirs,files in os.walk(os.getcwd()):
             for file in files:
                 path = os.path.join(root,file)
-		        if "data" in path:
+                if "data" in path:
                     print(path)
         await message.channel.send(randint(1,6))
         with open("test/お題.csv") as f:
