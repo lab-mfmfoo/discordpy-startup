@@ -406,7 +406,7 @@ async def on_message(message):
                 if "data" in path:
                     print(path)
         await message.channel.send(randint(1,6))
-        with open("test/お題.csv") as f:
+        with open("/app/data/お題2.csv") as f:
             await message.channel.send(str(randint(1,6)))
             for line in f:
                 await message.channel.send(str(randint(1,6)))
