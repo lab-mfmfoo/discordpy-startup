@@ -10,6 +10,8 @@ TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 client = discord.Client()
 
+NAME_TEXT = "text_for_wordwolf"
+NAME_VOICE = "voice_for_wordwolf"
 
 @client.event
 async def on_ready():
@@ -31,14 +33,14 @@ async def on_message(message):
                     guild.default_role: discord.PermissionOverwrite(read_messages=True, send_messages=False),
                     guild.me: discord.PermissionOverwrite(read_messages=True, send_messages=True),
             }
-            channel = await guild.create_text_channel(f"text_for_wordwolf", overwrites = overwrites)
+            channel = await guild.create_text_channel(NAME_TEXT, overwrites = overwrites)
             await channel.send("ここはワードウルフで使用する専用テキストチャンネルです。")
         
         for channel in guild.voice_channels:
             if channel.name == "voice_for_wordwolf":
                 break
         else:
-            channel = await guild.create_voice_channel(f"voice_for_wordwolf", overwrites = overwrites)
+            channel = await guild.create_voice_channel(NAME_VOICE, overwrites = overwrites)
             await channel.send("ここはワードウルフで使用する専用ボイスチャンネルです。")
         
         await message.channel.send("セットアップが完了しました。")
@@ -46,12 +48,12 @@ async def on_message(message):
     if command == "!teardown":
         
         for channel in guild.text_channels:
-            if channel.name == "text_for_wordwolf":
+            if channel.name == NAME_TEXT:
                 await channel.delete()
                 break
             
         for channel in guild.voice_channels:
-            if channel.name == "voice_for_wordwolf":
+            if channel.name == NAME_VOICE:
                 await channel.delete()
                 break
             
@@ -60,7 +62,7 @@ async def on_message(message):
     if command == "!startGame":
         
         for channel in guild.text_channels:
-            if channel.name == "ゲーム用":
+            if channel.name in ("ゲーム用", NAME_TEXT):
                 text_channel = channel
                 break
         else:
@@ -68,7 +70,7 @@ async def on_message(message):
             return
         
         for channel in guild.voice_channels:
-            if channel.name == "ゲーム用":
+            if channel.name in ("ゲーム用", NAME_VOICE):
                 voice_channel = channel
                 break
         else:
