@@ -41,7 +41,6 @@ async def on_message(message):
                 break
         else:
             channel = await guild.create_voice_channel(NAME_VOICE, overwrites = overwrites)
-            await channel.send("ここはワードウルフで使用する専用ボイスチャンネルです。")
         
         await message.channel.send("セットアップが完了しました。")
 
