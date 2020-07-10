@@ -10,8 +10,8 @@ TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 client = discord.Client()
 
-NAME_TEXT = "text_for_wordwolf"
-NAME_VOICE = "voice_for_wordwolf"
+NAME_TEXT = "wordwolf_text_channel"
+NAME_VOICE = "wordwolf_voice_channel"
 
 @client.event
 async def on_ready():
@@ -159,7 +159,7 @@ async def on_message(message):
                     guild.me: discord.PermissionOverwrite(read_messages=True, send_messages=True),
                     member:discord.PermissionOverwrite(read_messages=True, send_messages=False)
             }
-            channel = await guild.create_text_channel(f"投票（{member.display_name.lower().translate(trans)}）", overwrites = overwrites)
+            channel = await guild.create_text_channel(f"vote（{member.display_name.lower().translate(trans)}）", overwrites = overwrites)
             await channel.send(f"あなたのお題は **{wolf_word if isWolf[i] else villager_word }** です。")
             vote_channels.append(channel)
                 
