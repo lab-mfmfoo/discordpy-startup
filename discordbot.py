@@ -122,9 +122,9 @@ async def on_message(message):
 
         filename = "/app/data/" + ("お題2.csv" if "-s" in params else "お題.csv")
         
-	    if "-j" in params:
-		    filename = "/app/data/お題3.csv"
-            
+        if "-j" in params:
+            filename = "/app/data/お題3.csv" 
+        
         with open(filename, "r", encoding="utf-8") as f:
             if "-r" in params:
                 junle = "ランダム"
